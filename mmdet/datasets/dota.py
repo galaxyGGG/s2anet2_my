@@ -12,10 +12,15 @@ from .registry import DATASETS
 
 @DATASETS.register_module
 class DotaDataset(CustomDataset):
-    CLASSES = ('plane', 'baseball-diamond', 'bridge', 'ground-track-field',
-               'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
-               'basketball-court', 'storage-tank', 'soccer-ball-field',
-               'roundabout', 'harbor', 'swimming-pool', 'helicopter')
+    # CLASSES = ('plane', 'baseball-diamond', 'bridge', 'ground-track-field',
+    #            'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
+    #            'basketball-court', 'storage-tank', 'soccer-ball-field',
+    #            'roundabout', 'harbor', 'swimming-pool', 'helicopter')
+    CLASSES = ('other-airplane', 'Bridge', 'SmallCar', 'Van', 'DumpTruck', 'CargoTruck', 'Motorboat', 'Boeing737',
+               'TruckTractor', 'Intersection', 'A220', 'A321', 'TennisCourt', 'FootballField', 'DryCargoShip',
+               'FishingBoat', 'Trailer', 'other-vehicle', 'LiquidCargoShip', 'PassengerShip', 'EngineeringShip',
+               'Excavator', 'BaseballField', 'other-ship', 'BasketballCourt', 'Bus', 'Boeing747', 'Tractor', 'Warship',
+               'Tugboat', 'ARJ21', 'A330', 'A350', 'C919', 'Boeing777', 'Boeing787', 'Roundabout')
 
     def evaluate(self, results, work_dir=None, gt_dir=None, imagesetfile=None):
         dst_raw_path = osp.join(work_dir, 'results_before_nms')

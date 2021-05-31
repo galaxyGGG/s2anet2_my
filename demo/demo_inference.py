@@ -5,6 +5,7 @@ import pdb
 import random
 
 import cv2
+import matplotlib
 import mmcv
 from mmcv import Config
 
@@ -90,7 +91,8 @@ def save_det_result(config_file, out_dir, checkpoint_file=None, img_dir=None, co
                                classnames,
                                scale=1.0,
                                threshold=0.5,
-                               colormap=colormap)
+                               colormap=colormap,
+                              show_label=True)
         print(img_out_path)
         cv2.imwrite(img_out_path, img)
         # 保存bbox结果
@@ -128,7 +130,12 @@ if __name__ == '__main__':
         (0, 152, 255),
         (34, 87, 255),
         (72, 85, 121)]
+    from my.get_colors import ncolors
+    fair1m_colormap = ncolors(37,0)
+
+    if not os.path.exists(args.out_dir):
+        os.mkdir(args.out_dir)
 
     hrsc2016_colormap = [(212, 188, 0)]
     save_det_result(args.config_file, args.out_dir, checkpoint_file=args.model, img_dir=args.img_dir,
-                    colormap=dota_colormap)
+                    colormap=fair1m_colormap)

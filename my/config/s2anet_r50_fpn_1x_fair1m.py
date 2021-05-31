@@ -19,7 +19,8 @@ model = dict(
         num_outs=5),
     bbox_head=dict(
         type='S2ANetHead',
-        num_classes=16,
+        # todo: 修改
+        num_classes=38,
         in_channels=256,
         feat_channels=256,
         stacked_convs=2,
@@ -84,8 +85,9 @@ test_cfg = dict(
     nms=dict(type='nms_rotated', iou_thr=0.1),
     max_per_img=2000)
 # dataset settings
+# todo: 修改
 dataset_type = 'DotaDataset'
-data_root = '/home/jyc/arashi/data/dota_small_1024/'
+data_root = '/home/jyc/arashi/data/FAIR1M_dataset_small_1024/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -114,6 +116,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
+    # todo:修改
     imgs_per_gpu=1,
     workers_per_gpu=1,
     train=dict(
@@ -135,7 +138,8 @@ evaluation = dict(
     gt_dir='data/dota/test/labelTxt/', # change it to valset for offline validation
     imagesetfile='data/dota/test/test.txt')
 # optimizer
-optimizer = dict(type='SGD', lr=0, momentum=0.9, weight_decay=0.0001)
+# todo
+optimizer = dict(type='SGD', lr=0.00125, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
@@ -156,4 +160,4 @@ dist_params = dict(backend='nccl')
 log_level = 'INFO'
 load_from = None
 resume_from = None
-workflow = [('train', 1)]
+workflow = [('train', 1),("val",1)]

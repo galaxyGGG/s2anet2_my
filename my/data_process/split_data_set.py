@@ -5,10 +5,19 @@ import shutil
 
 import numpy as np
 import os
+from tqdm import tqdm
 
 
-# 划分数据集，分别放到对应的文件夹
 def split_dataset(data_dir, train_ratio, val_ratio, out_dir):
+    """
+    # 划分数据集，分别放到对应的文件夹
+    # 要先把标注文件转换为txt格式
+    :param data_dir:
+    :param train_ratio:
+    :param val_ratio:
+    :param out_dir:
+    :return:
+    """
     data = os.listdir(data_dir)
     # 设置随机数种子，保证每次生成的结果都是一样的
     np.random.seed(42)
@@ -33,7 +42,7 @@ def split_dataset(data_dir, train_ratio, val_ratio, out_dir):
         label_dir = os.path.join(out_dir, set_name, "labelTxt")
         if not os.path.exists(label_dir):
             os.makedirs(label_dir)
-        for indice in [train_indices, val_indices, test_indices][i]:
+        for indice in tqdm([train_indices, val_indices, test_indices][i]):
             filename = data[indice]
             # 复制image
             file_path = os.path.join(data_dir,filename)
@@ -50,8 +59,8 @@ def split_dataset(data_dir, train_ratio, val_ratio, out_dir):
 
 
 if __name__ == '__main__':
-    data_dir = "/home/jyc/下载/s2anet/data/ganlan/ganlan_ship/images"
-    out_dir = "/home/jyc/下载/s2anet/data/ganlan/ship_dataset"
+    data_dir = "/home/jyc/arashi/data/FAIR1M/images_png"
+    out_dir = "/home/jyc/arashi/data/FAIR1M_dataset"
 
-    split_dataset(data_dir, 0.5, 1/6,out_dir)
+    split_dataset(data_dir, 0.7, 0.1,out_dir)
 

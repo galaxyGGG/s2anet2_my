@@ -4,7 +4,7 @@ from functools import partial
 from multiprocessing import Pool
 
 import cv2
-import dota_utils as util
+import DOTA_devkit.dota_utils as util
 import numpy as np
 
 

@@ -10,10 +10,10 @@ from functools import partial
 from multiprocessing import Pool
 
 import cv2
-import dota_utils as util
+import DOTA_devkit.dota_utils as util
 import numpy as np
 import shapely.geometry as shgeo
-from dota_utils import GetFileFromThisRootDir
+from DOTA_devkit.dota_utils import GetFileFromThisRootDir
 
 
 def choose_best_pointorder_fit_another(poly1, poly2):
