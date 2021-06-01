@@ -135,8 +135,8 @@ data = dict(
         img_prefix=data_root + 'test_split/images/',
         pipeline=test_pipeline))
 evaluation = dict(
-    gt_dir='data/dota/test/labelTxt/', # change it to valset for offline validation
-    imagesetfile='data/dota/test/test.txt')
+    gt_dir='/home/jyc/arashi/data/FAIR1M_dataset_small/test/labelTxt', # change it to valset for offline validation
+    imagesetfile='/home/jyc/arashi/data/FAIR1M_dataset_small/test/imgsetfile.txt')
 # optimizer
 # todo
 optimizer = dict(type='SGD', lr=0.00125, momentum=0.9, weight_decay=0.0001)

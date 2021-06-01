@@ -149,6 +149,11 @@ def voc_eval(detpath,
     with open(detfile, 'r') as f:
         lines = f.readlines()
 
+    # todo: 修改标记
+    # 判断是否为空
+    if len(lines)==0:
+        return 0, 0, 0
+
     splitlines = [x.strip().split(' ') for x in lines]
     image_ids = [x[0] for x in splitlines]
     confidence = np.array([float(x[1]) for x in splitlines])
