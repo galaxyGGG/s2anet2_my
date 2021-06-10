@@ -79,4 +79,8 @@ if __name__ == '__main__':
 
     print(dict_cls)
     print(dict_cls.keys())
+    # 保存classes.txt
+    with open(os.path.join(xml_dir,"../classes.txt"),"w") as f:
+        for key in dict_cls.keys():
+            f.write(key+"\n")
     print("num_classes:"+str(len(dict_cls.keys())))

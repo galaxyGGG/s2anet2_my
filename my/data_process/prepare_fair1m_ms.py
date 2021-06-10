@@ -49,5 +49,5 @@ def prepare_multi_scale_data(src_path, dst_path, gap=200, subsize=1024, scales=[
 
 
 if __name__ == '__main__':
-    prepare_multi_scale_data('/home/jyc/arashi/data/FAIR1M_dataset_small', '/home/jyc/arashi/data/FAIR1M_dataset_small_1024', gap=100, subsize=800,scales=[1.0],
-                             num_process=32)
+    prepare_multi_scale_data('/home/jyc/arashi/data/FAIR1M_dataset', '/home/jyc/arashi/data/FAIR1M_dataset_1024', gap=100, subsize=800,scales=[0.5],
+                             num_process=64)

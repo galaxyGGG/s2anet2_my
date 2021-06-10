@@ -114,7 +114,7 @@ class DOTA:
         return imgs
 
 if __name__ == '__main__':
-    examplesplit = DOTA("/home/jyc/arashi/data/FAIR1M_dataset/test")
+    examplesplit = DOTA("/home/jyc/arashi/data/FAIR1M_dataset/train")
     # 按类名加载图片
     # imgids = examplesplit.getImgIds(catNms=['plane'])
     # img = examplesplit.loadImgs(imgids)
