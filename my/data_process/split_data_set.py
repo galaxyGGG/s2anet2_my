@@ -12,6 +12,7 @@ def split_dataset_dota(data_dir, train_ratio, val_ratio, out_dir):
     """
     # 划分数据集，分别放到对应的文件夹
     # 要先把标注文件转换为txt格式
+    一般来说用测试集做验证集，所以val_ratio = 0
     :param data_dir:
     :param train_ratio:
     :param val_ratio:
@@ -58,6 +59,7 @@ def split_dataset_dota(data_dir, train_ratio, val_ratio, out_dir):
 def split_dataset_imagenet(data_dir, train_ratio, val_ratio, out_dir):
     """
     imagenet的数据按照类别建立文件夹，把每个文件夹分别按照划分比例分为训练、验证集
+    一般来说用测试集做验证集，所以val_ratio = 0
     :param data_dir:
     :param train_ratio:
     :param val_ratio:
@@ -100,12 +102,13 @@ def split_dataset_imagenet(data_dir, train_ratio, val_ratio, out_dir):
 
 
 if __name__ == '__main__':
-    # data_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/AllImages"
-    # out_dir = "/home/jyc/arashi/data/HRSC2016_dataset"
-    # split_dataset(data_dir, 0.8, 0,out_dir)
+    # *** dota 数据集划分 ***
+    data_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/AllImages"
+    out_dir = "/home/jyc/arashi/data/HRSC2016_dataset"
+    split_dataset_dota(data_dir, 0.8, 0,out_dir)
 
-    # *** image_net数据集划分 ***
-    data_dir = "/home/jyc/arashi/data/HRSC2016_cls/warships/images"
-    out_dir = "/home/jyc/arashi/data/HRSC2016_cls/warships"
-    split_dataset_imagenet(data_dir, 0.8, 0, out_dir)
+    # # *** image_net数据集划分 ***
+    # data_dir = "/home/jyc/arashi/data/HRSC2016_cls/warships/images"
+    # out_dir = "/home/jyc/arashi/data/HRSC2016_cls/warships"
+    # split_dataset_imagenet(data_dir, 0.8, 0, out_dir)
 
