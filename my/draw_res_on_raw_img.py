@@ -22,7 +22,9 @@ colormap=[
         (0, 152, 255),
         (34, 87, 255),
         (72, 85, 121)]
-
+#随机生成颜色
+from my.get_colors import ncolors
+colormap = ncolors(5, 0)
 
 def draw_res_on_raw_img(img_dir,img_out_dir,txt_dir,config_file,show_label,score_thd=0.3):
     cfg = Config.fromfile(config_file)
@@ -77,8 +79,8 @@ def draw_res_on_raw_img(img_dir,img_out_dir,txt_dir,config_file,show_label,score
 
 
 if __name__ == '__main__':
-    img_dir = "/data/dota/test/images"
-    img_out_dir = "/data/res/s2anet_r50_fpn_1x/imgs_raw_infer"
-    txt_dir = "/data/res/s2anet_r50_fpn_1x/raw_before_nms"
-    config_file = "/workspace/s2anet/configs/dota/s2anet_r50_fpn_1x_dota.py"
+    img_dir = "/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/images"
+    img_out_dir = "/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/infer_imgs"
+    txt_dir = "/home/amax/ganlan/arashi/s2anet2_my/s2anet_r50_fpn_1x_scale1_1.5_fair1m_5_classes/results_after_nms"
+    config_file = "/home/amax/ganlan/arashi/s2anet2_my/my/config/s2anet_r50_fpn_1x_fair1m_5classes.py"
     draw_res_on_raw_img(img_dir, img_out_dir, txt_dir, config_file, True,0.5)

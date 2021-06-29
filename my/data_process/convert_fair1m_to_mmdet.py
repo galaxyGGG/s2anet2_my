@@ -7,7 +7,9 @@ from PIL import Image
 
 from mmdet.core import poly_to_rotated_box_single
 
-wordname_15 = ['other-airplane', 'Bridge', 'SmallCar', 'Van', 'DumpTruck', 'CargoTruck', 'Motorboat', 'Boeing737', 'TruckTractor', 'Intersection', 'A220', 'A321', 'TennisCourt', 'FootballField', 'DryCargoShip', 'FishingBoat', 'Trailer', 'other-vehicle', 'LiquidCargoShip', 'PassengerShip', 'EngineeringShip', 'Excavator', 'BaseballField', 'other-ship', 'BasketballCourt', 'Bus', 'Boeing747', 'Tractor', 'Warship', 'Tugboat', 'ARJ21', 'A330', 'A350', 'C919', 'Boeing777', 'Boeing787', 'Roundabout']
+# wordname_15 = ['other-airplane', 'Bridge', 'SmallCar', 'Van', 'DumpTruck', 'CargoTruck', 'Motorboat', 'Boeing737', 'TruckTractor', 'Intersection', 'A220', 'A321', 'TennisCourt', 'FootballField', 'DryCargoShip', 'FishingBoat', 'Trailer', 'other-vehicle', 'LiquidCargoShip', 'PassengerShip', 'EngineeringShip', 'Excavator', 'BaseballField', 'other-ship', 'BasketballCourt', 'Bus', 'Boeing747', 'Tractor', 'Warship', 'Tugboat', 'ARJ21', 'A330', 'A350', 'C919', 'Boeing777', 'Boeing787', 'Roundabout']
+# 大类
+wordname_15 = ['car', 'ship', 'road', 'court', 'airplane']
 
 label_ids = {name: i + 1 for i, name in enumerate(wordname_15)}
 

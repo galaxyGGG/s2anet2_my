@@ -5,9 +5,21 @@ import numpy as np
 import cv2
 from tqdm import tqdm
 
+# 小类合并为大类
+dict_merge_cls = {
+    "airplane": ['other-airplane', 'Boeing737', 'A220', 'A321', 'Boeing747', 'ARJ21', 'A330', 'A350', 'C919',
+                 'Boeing777', 'Boeing787'],
+    "road": ['Bridge', 'Intersection', 'Roundabout'],
+    "car": ['SmallCar', 'Van', 'DumpTruck', 'CargoTruck', 'TruckTractor', 'Trailer', 'other-vehicle', 'Bus', 'Tractor',
+            'Excavator'],
+    "ship": ['Motorboat', 'DryCargoShip', 'FishingBoat', 'LiquidCargoShip', 'PassengerShip', 'EngineeringShip',
+             'other-ship', 'Warship', 'Tugboat'],
+    "court":['TennisCourt','FootballField','BaseballField', 'BasketballCourt']
+}
+
 dict_cls = {}
 
-def convert_annotation(image_id,xml_dir,txt_dir):
+def convert_annotation(image_id,xml_dir,txt_dir,merge_cls = False):
     """
     # 转换这一张图片的坐标表示方式（格式）,即读取xml文件的内容，存放在txt文件中。
     :param image_id:
@@ -27,6 +39,12 @@ def convert_annotation(image_id,xml_dir,txt_dir):
     for obj in root.iter('object'):
         difficult = "0"
         cls = obj.find('possibleresult').find("name").text.replace(" ","")
+        # 小类合并为大类
+        if merge_cls:
+            for key,value in dict_merge_cls.items():
+                if cls in value:
+                    cls=key
+                    break
         if not cls in dict_cls.keys():
             dict_cls[cls] = 0
         dict_cls[cls] += 1
@@ -64,7 +82,7 @@ def convert_annotation(image_id,xml_dir,txt_dir):
             out_file.write(cls + " " + difficult + "\n")
 
 if __name__ == '__main__':
-    xml_dir = "/home/jyc/arashi/data/FAIR1M/labelXmls"
+    xml_dir = "/home/amax/ganlan/arashi/data/FAIR1M/labelXmls"
     txt_dir = ""
     if txt_dir == "":
         txt_dir = os.path.join(xml_dir,"../labelTxt")
@@ -75,7 +93,7 @@ if __name__ == '__main__':
         if not os.path.splitext(file)[-1]==".xml":
             continue
         img_id = os.path.splitext(file)[:-1]
-        convert_annotation(img_id,xml_dir,txt_dir)
+        convert_annotation(img_id,xml_dir,txt_dir,merge_cls = True)
 
     print(dict_cls)
     print(dict_cls.keys())

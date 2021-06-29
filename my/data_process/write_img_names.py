@@ -9,4 +9,4 @@ def write_img_names(dir):
             f.write(os.path.splitext(file)[0]+"\n")
 
 if __name__ == '__main__':
-    write_img_names("/home/jyc/arashi/data/FAIR1M_dataset_small/test/images")
+    write_img_names("/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/images")

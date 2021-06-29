@@ -256,9 +256,9 @@ def voc_eval(detpath,
 
 
 def main():
-    detpath = r'/home/hjm/mmdetection/work_dirs/cascade_s2anet_r50_fpn_1x_dota/results_after_nms/{:s}.txt'
-    annopath = r'data/dota/test/labelTxt/{:s}.txt'  # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    imagesetfile = r'data/dota/test/test.txt'
+    detpath = r'/home/amax/ganlan/arashi/s2anet2_my/s2anet_r50_fpn_1x_scale1_1.5_fair1m_5_classes/results_after_nms/{:s}.txt'
+    annopath = r'/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/labelTxt/{:s}.txt'  # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
+    imagesetfile = r'/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/imgsetfile.txt'
 
     # For DOTA-v1.5
     # classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
@@ -268,6 +268,8 @@ def main():
                   'tennis-court',
                   'basketball-court', 'storage-tank', 'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool',
                   'helicopter']
+    classnames =['car', 'ship', 'road', 'court', 'airplane']
+
     classaps = []
     map = 0
     for classname in classnames:

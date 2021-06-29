@@ -59,8 +59,8 @@ def split_dataset(data_dir, train_ratio, val_ratio, out_dir):
 
 
 if __name__ == '__main__':
-    data_dir = "/home/jyc/arashi/data/FAIR1M/images_png"
-    out_dir = "/home/jyc/arashi/data/FAIR1M_dataset"
+    data_dir = "/home/amax/ganlan/arashi/data/FAIR1M/images_png"
+    out_dir = "/home/amax/ganlan/arashi/data/FAIR1M_dataset"
 
-    split_dataset(data_dir, 0.7, 0.1,out_dir)
+    split_dataset(data_dir, 0.8, 0.1,out_dir)
 

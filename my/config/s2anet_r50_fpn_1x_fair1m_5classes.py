@@ -20,7 +20,7 @@ model = dict(
     bbox_head=dict(
         type='S2ANetHead',
         # todo: 修改
-        num_classes=38,
+        num_classes=6,
         in_channels=256,
         feat_channels=256,
         stacked_convs=2,
@@ -117,8 +117,8 @@ test_pipeline = [
 ]
 data = dict(
     # todo:修改
-    imgs_per_gpu=2,
-    workers_per_gpu=2,
+    imgs_per_gpu=4,
+    workers_per_gpu=4,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'trainval_split/trainval_s2anet.pkl',
@@ -156,7 +156,7 @@ log_config = dict(
         dict(type='TextLoggerHook'),
     ])
 # runtime settings
-total_epochs = 50
+total_epochs = 100
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 load_from = None
