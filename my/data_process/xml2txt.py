@@ -54,17 +54,15 @@ def convert_annotation(image_id,xml_dir,txt_dir):
                 cord1 = h
                 break
             new_cords.append([cord0, cord1])
-        else:
-            # continue
-            if cv2.contourArea(contour=np.float32(new_cords)) <= 10:  # 筛选掉了像素数小于10的小目标
-                print('小目标', image_id)
-                continue
-            for cord in new_cords:
-                out_file.write(str(cord[0])+" "+str(cord[1])+" ")
-            out_file.write(cls + " " + difficult + "\n")
+        if cv2.contourArea(contour=np.float32(new_cords)) <= 10:  # 筛选掉了像素数小于10的小目标
+            print('小目标', image_id)
+            continue
+        for cord in new_cords:
+            out_file.write(str(cord[0])+" "+str(cord[1])+" ")
+        out_file.write(cls + " " + difficult + "\n")
 
 if __name__ == '__main__':
-    xml_dir = "/home/jyc/arashi/data/FAIR1M/labelXmls"
+    xml_dir = "/home/jyc/arashi/data/HRSC2016/Train/Annotations"
     txt_dir = ""
     if txt_dir == "":
         txt_dir = os.path.join(xml_dir,"../labelTxt")
