@@ -87,7 +87,7 @@ test_cfg = dict(
 # dataset settings
 # todo: 修改
 dataset_type = 'DotaDataset'
-data_root = '/home/amax/ganlan/arashi/data/FAIR1M_dataset_1024/'
+data_root = '/home/jyc/arashi/data/FAIR1M_dataset_1024/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -126,21 +126,20 @@ data = dict(
         pipeline=train_pipeline),
     val=dict(
         type=dataset_type,
-        # todo：待修改
         ann_file=data_root + 'trainval_split/trainval_s2anet.pkl',
         img_prefix=data_root + 'trainval_split/images/',
-        pipeline=train_pipeline),
+        pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'test_split/test_s2anet.pkl',
         img_prefix=data_root + 'test_split/images/',
         pipeline=test_pipeline))
 evaluation = dict(
-    gt_dir='/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/labelTxt', # change it to valset for offline validation
-    imagesetfile='/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/imgsetfile.txt')
+    gt_dir='/home/jyc/arashi/data/FAIR1M_dataset/test/labelTxt', # change it to valset for offline validation
+    imagesetfile='/home/jyc/arashi/data/FAIR1M_dataset/test/imgsetfile.txt')
 # optimizer
 # todo
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.0025, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
@@ -156,7 +155,7 @@ log_config = dict(
         dict(type='TextLoggerHook'),
     ])
 # runtime settings
-total_epochs = 50
+total_epochs = 12
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 load_from = None

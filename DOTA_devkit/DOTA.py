@@ -114,15 +114,13 @@ class DOTA:
         return imgs
 
 if __name__ == '__main__':
-    examplesplit = DOTA("/home/amax/ganlan/arashi/data/FAIR1M_dataset/test")
-    #按类名加载图片
-    # imgids = examplesplit.getImgIds(catNms=['Bridge'])
+    examplesplit = DOTA("/home/jyc/arashi/data/FAIR1M_dataset/train")
+    # 按类名加载图片
+    # imgids = examplesplit.getImgIds(catNms=['plane'])
     # img = examplesplit.loadImgs(imgids)
 
-    # #获取所有id
     imgids = examplesplit.getImgIds()
     for imgid in imgids:
-        imgid="1674"
         anns = examplesplit.loadAnns(imgId=imgid)
         examplesplit.showAnns(anns, imgid, 2)
         plt.show()
