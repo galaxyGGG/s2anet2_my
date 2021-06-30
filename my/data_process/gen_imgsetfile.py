@@ -15,4 +15,4 @@ def write_img_names(dir,with_ext=False):
                 f.write(file + "\n")
 
 if __name__ == '__main__':
-    write_img_names("/home/jyc/arashi/data/dogs-vs-cats/test/test",True)
+    write_img_names("/home/amax/ganlan/arashi/data/HRSC2016_dataset/test/images")

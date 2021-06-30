@@ -9,12 +9,8 @@ from mmdet.core import poly_to_rotated_box_single
 
 # wordname_15 = ['other-airplane', 'Bridge', 'SmallCar', 'Van', 'DumpTruck', 'CargoTruck', 'Motorboat', 'Boeing737', 'TruckTractor', 'Intersection', 'A220', 'A321', 'TennisCourt', 'FootballField', 'DryCargoShip', 'FishingBoat', 'Trailer', 'other-vehicle', 'LiquidCargoShip', 'PassengerShip', 'EngineeringShip', 'Excavator', 'BaseballField', 'other-ship', 'BasketballCourt', 'Bus', 'Boeing747', 'Tractor', 'Warship', 'Tugboat', 'ARJ21', 'A330', 'A350', 'C919', 'Boeing777', 'Boeing787', 'Roundabout']
 # 大类
-wordname_15 = ['car', 'ship', 'road', 'court', 'airplane']
 
-label_ids = {name: i + 1 for i, name in enumerate(wordname_15)}
-
-
-def parse_ann_info(label_base_path, img_name):
+def parse_ann_info(label_base_path, img_name, label_ids):
     lab_path = osp.join(label_base_path, img_name + '.txt')
     bboxes, labels, bboxes_ignore, labels_ignore = [], [], [], []
     with open(lab_path, 'r') as f:
@@ -35,7 +31,7 @@ def parse_ann_info(label_base_path, img_name):
     return bboxes, labels, bboxes_ignore, labels_ignore
 
 
-def convert_dota_to_mmdet(src_path, out_path, trainval=True, filter_empty_gt=True, ext='.png'):
+def convert_dota_to_mmdet(src_path, out_path,wordname_15, trainval=True, filter_empty_gt=True, ext='.png'):
     """Generate .pkl format annotation that is consistent with mmdet.
     Args:
         src_path: dataset path containing images and labelTxt folders.
@@ -45,6 +41,8 @@ def convert_dota_to_mmdet(src_path, out_path, trainval=True, filter_empty_gt=Tru
     img_path = os.path.join(src_path, 'images')
     label_path = os.path.join(src_path, 'labelTxt')
     img_lists = os.listdir(img_path)
+
+    label_ids = {name: i + 1 for i, name in enumerate(wordname_15)}
 
     data_dict = []
     for id, img in enumerate(img_lists):
@@ -62,7 +60,7 @@ def convert_dota_to_mmdet(src_path, out_path, trainval=True, filter_empty_gt=Tru
             # filter images without gt to speed up training
             if filter_empty_gt & (osp.getsize(label) == 0):
                 continue
-            bboxes, labels, bboxes_ignore, labels_ignore = parse_ann_info(label_path, img_name)
+            bboxes, labels, bboxes_ignore, labels_ignore = parse_ann_info(label_path, img_name, label_ids)
             ann = {}
             ann['bboxes'] = np.array(bboxes, dtype=np.float32)
             ann['labels'] = np.array(labels, dtype=np.int64)

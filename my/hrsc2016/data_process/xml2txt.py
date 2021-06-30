@@ -79,14 +79,29 @@ def get_classes_from_xml(xml_file):
 
 
 if __name__ == '__main__':
-    xml_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/Annotations"
-    sysdata = "/home/jyc/arashi/data/HRSC2016/FullDataSet/sysdata.xml"
+    xml_dir = "/home/amax/ganlan/arashi/data/HRSC2016/FullDataSet/Annotations"
+    sysdata = "/home/amax/ganlan/arashi/data/HRSC2016/FullDataSet/sysdata.xml"
     # 筛选部分类别
     wanted_classes = ['阿利伯克级驱逐舰', '圣安东尼奥级两栖船坞运输舰', '塔拉瓦级通用两栖攻击舰',
                       '琵琶形军舰', '企业级航母', '提康德罗加级巡洋舰', '佩里级护卫舰', '尾部OX头部圆指挥舰', '奥斯汀级两栖船坞运输舰', '潜艇', '惠德贝岛级船坞登陆舰',
                       '尼米兹级航母', '军舰', '俄罗斯库兹涅佐夫号航母', '医疗船', '中途号航母', '蓝岭级指挥舰', '小鹰级航母',
                       '航母']
+
+
     classes_dict = get_classes_from_xml(sysdata)
+
+    # *** 把小类合并为大类 ***
+    for key,val in classes_dict.items():
+        if val in ["船","游轮","运输汽车船(======|","货船(_|.--.--|_]=","气垫船","运输汽车船([]==[])","集装箱货船","商船","游艇"]:
+            classes_dict[key] = "ship"
+        elif val in ["阿利伯克级驱逐舰","圣安东尼奥级两栖船坞运输舰","塔拉瓦级通用两栖攻击舰","琵琶形军舰","提康德罗加级巡洋舰","佩里级护卫舰","尾部OX头部圆指挥舰",
+             "奥斯汀级两栖船坞运输舰","惠德贝岛级船坞登陆舰","军舰","医疗船","蓝岭级指挥舰",]:
+            classes_dict[key] = "warship"
+        elif val in ["企业级航母","尼米兹级航母","俄罗斯库兹涅佐夫号航母","中途号航母","小鹰级航母","航母","福特级航空母舰"]:
+            classes_dict[key] = "aircraft_carrier"
+        elif val in ["潜艇"]:
+            classes_dict[key] ="submarine"
+    wanted_classes = ["ship", "warship", "aircraft_carrier", "submarine"]
 
     txt_dir = ""
     if txt_dir == "":

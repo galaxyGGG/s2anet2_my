@@ -21,7 +21,11 @@ class DotaDataset(CustomDataset):
     #            'FishingBoat', 'Trailer', 'other-vehicle', 'LiquidCargoShip', 'PassengerShip', 'EngineeringShip',
     #            'Excavator', 'BaseballField', 'other-ship', 'BasketballCourt', 'Bus', 'Boeing747', 'Tractor', 'Warship',
     #            'Tugboat', 'ARJ21', 'A330', 'A350', 'C919', 'Boeing777', 'Boeing787', 'Roundabout')
-    CLASSES=('car', 'ship', 'road', 'court', 'airplane')
+    # CLASSES = ('阿利伯克级驱逐舰', '圣安东尼奥级两栖船坞运输舰', '塔拉瓦级通用两栖攻击舰',
+    #            '琵琶形军舰', '企业级航母', '提康德罗加级巡洋舰', '佩里级护卫舰', '尾部OX头部圆指挥舰', '奥斯汀级两栖船坞运输舰', '潜艇', '惠德贝岛级船坞登陆舰',
+    #            '尼米兹级航母', '军舰', '俄罗斯库兹涅佐夫号航母', '医疗船', '中途号航母', '蓝岭级指挥舰', '小鹰级航母',
+    #            '航母')
+    CLASSES = ('warship', 'ship', 'aircraft_carrier', 'submarine')
     def evaluate(self, results, work_dir=None, gt_dir=None, imagesetfile=None):
         dst_raw_path = osp.join(work_dir, 'results_before_nms')
         dst_merge_path = osp.join(work_dir, 'results_after_nms')
