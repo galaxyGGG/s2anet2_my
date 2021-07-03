@@ -14,5 +14,7 @@ def write_img_names(dir,with_ext=False):
                 # 加后缀
                 f.write(file + "\n")
 
+
+
 if __name__ == '__main__':
-    write_img_names("/home/jyc/arashi/data/dogs-vs-cats/test/test",True)
+    write_img_names("/home/jyc/arashi/data/HRSC2016_dataset/test/images",False)

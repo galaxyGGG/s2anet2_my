@@ -1,8 +1,6 @@
 import os
 import shutil
 
-from DOTA_devkit.DOTA import DOTA
-
 
 # 在数据集中找到含有某些特定的类别的数据
 def find_by_cls(cls_list, txt_dir, img_dir, output_dir):

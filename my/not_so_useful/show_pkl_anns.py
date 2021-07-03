@@ -1,7 +1,7 @@
 # 检查转换为pkl后的rotated box是否正确
 import pickle
 from matplotlib import pyplot as plt
-from DOTA_devkit.DOTA import DOTA
+from my.DOTA import DOTA
 from mmdet.core import rotated_box_to_poly_single
 import os
 from my.data_process.convert_fair1m_to_mmdet import wordname_15 as classnames

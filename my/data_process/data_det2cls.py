@@ -114,6 +114,7 @@ def img_paste(img_path, polygon, save_file_path,crop_size=512):
     # plt.show()
 
     cv2.imwrite(save_file_path, img_crop)
+    return img_crop
 
 
 # def img_paste2():
@@ -179,6 +180,6 @@ if __name__ == '__main__':
     txt_dir = os.path.join(img_dir,"../labelTxt")
     classes = get_cls_list("/home/jyc/arashi/data/HRSC2016/FullDataSet/classes.txt")
     # classes = ["企业级航母","尼米兹级航母","俄罗斯库兹涅佐夫号航母","中途号航母"]
-    classes = ["阿利伯克级驱逐舰","圣安东尼奥级两栖船坞运输舰","塔拉瓦级通用两栖攻击舰","琵琶形军舰","提康德罗加级巡洋舰","佩里级护卫舰","尾部OX头部圆指挥舰",
-             "奥斯汀级两栖船坞运输舰","惠德贝岛级船坞登陆舰","医疗船"]
+    # classes = ["阿利伯克级驱逐舰","圣安东尼奥级两栖船坞运输舰","塔拉瓦级通用两栖攻击舰","琵琶形军舰","提康德罗加级巡洋舰","佩里级护卫舰","尾部OX头部圆指挥舰",
+    #          "奥斯汀级两栖船坞运输舰","惠德贝岛级船坞登陆舰","医疗船"]
     extract_object(txt_dir, img_dir, classes, ext=".bmp")

@@ -1,8 +1,7 @@
 # 检查不合格数据(在fair1m数据集中容易报错)：越界及小于10像素
 from tqdm import tqdm
 
-from DOTA_devkit.DOTA import DOTA
-import matplotlib.pyplot as plt
+from my.DOTA import DOTA
 import cv2
 import numpy as np
 

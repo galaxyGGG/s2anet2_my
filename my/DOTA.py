@@ -1,6 +1,6 @@
 #The code is used for visulization, inspired from cocoapi
 #  Licensed under the Simplified BSD License [see bsd.txt]
-
+#-*- coding: utf-8 -*-
 import os
 import matplotlib.pyplot as plt
 from matplotlib.collections import PatchCollection
@@ -9,6 +9,9 @@ import numpy as np
 import DOTA_devkit.dota_utils as util
 from collections import defaultdict
 import cv2
+plt.rcParams['font.sans-serif']=['SimHei'] #显示中文标签
+plt.rcParams['axes.unicode_minus']=False   #这两行需要手动设置
+
 
 def _isArrayLike(obj):
     if type(obj) == str:
@@ -107,20 +110,25 @@ class DOTA:
         print('imgids:', imgids)
         imgs = []
         for imgid in imgids:
-            filename = os.path.join(self.imagepath, imgid + '.png')
+            filename = os.path.join(self.imagepath, imgid + '.bmp')
             print('filename:', filename)
             img = cv2.imread(filename)
             imgs.append(img)
         return imgs
 
 if __name__ == '__main__':
-    examplesplit = DOTA("/home/jyc/arashi/data/FAIR1M_dataset/train")
+    examplesplit = DOTA("/home/jyc/arashi/data/HRSC2016_dataset_800/test_split")
     # 按类名加载图片
     # imgids = examplesplit.getImgIds(catNms=['plane'])
     # img = examplesplit.loadImgs(imgids)
 
     imgids = examplesplit.getImgIds()
     for imgid in imgids:
+
         anns = examplesplit.loadAnns(imgId=imgid)
+        plt.title(imgid)
         examplesplit.showAnns(anns, imgid, 2)
         plt.show()
+        # plt.figure()
+        #
+        # plt.show()
