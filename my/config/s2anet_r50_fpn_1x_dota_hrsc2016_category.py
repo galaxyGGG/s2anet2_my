@@ -1,11 +1,11 @@
 # model settings
 model = dict(
     type='S2ANetDetector',
-    pretrained='torchvision://resnet50',
+    pretrained='torchvision://resnet101',
     # pretrained = "///data/checkpoints/resnet50-19c8e357.pth",
     backbone=dict(
         type='ResNet',
-        depth=50,
+        depth=101,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
         frozen_stages=1,
@@ -20,7 +20,7 @@ model = dict(
     bbox_head=dict(
         type='S2ANetHead',
         # todo: 修改
-        num_classes=5,
+        num_classes=9,
         in_channels=256,
         feat_channels=256,
         stacked_convs=2,
@@ -87,12 +87,26 @@ test_cfg = dict(
 # dataset settings
 # todo: 修改
 dataset_type = 'DotaDataset'
-data_root = '/home/amax/ganlan/arashi/data/HRSC2016_dataset_1024/'
+data_root = '/home/jyc/arashi/data/HRSC2016_dataset_800/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
+albu_train_transforms = [
+    dict(type='RandomBrightnessContrast'),
+    # 这一套用于遥感影像
+    # dict(type='ShiftScaleRotate',scale_limit = [0.5,1.5],interpolation = 1,always_apply = False,p = 0.5 ),
+    dict(type="ShiftScaleRotate"),
+    dict(type='RGBShift'),
+    dict(type='Blur'), # 模糊
+    dict(type='GaussNoise'), # 高斯噪声
+    # dict(type='ElasticTransform'), # 弹性变换不太合适用于bbox
+    dict(type='Cutout')
+]
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
+    # TODO 修改
+    dict(type='Albu', transforms=albu_train_transforms),
+    dict(type='RandomRotate'),
     dict(type='RotatedResize', img_scale=(1024, 1024), keep_ratio=True),
     dict(type='RotatedRandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
@@ -135,11 +149,11 @@ data = dict(
         img_prefix=data_root + 'test_split/images/',
         pipeline=test_pipeline))
 evaluation = dict(
-    gt_dir='/home/amax/ganlan/arashi/data/HRSC2016_dataset/test/labelTxt', # change it to valset for offline validation
-    imagesetfile='/home/amax/ganlan/arashi/data/HRSC2016_dataset/test/imgsetfile.txt')
+    gt_dir='/home/jyc/arashi/data/HRSC2016_dataset/test', # change it to valset for offline validation
+    imagesetfile='/home/jyc/arashi/data/HRSC2016_dataset/test/imgsetfile.txt')
 # optimizer
 # todo
-optimizer = dict(type='SGD', lr=0.005, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(

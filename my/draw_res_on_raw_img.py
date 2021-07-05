@@ -5,33 +5,31 @@ import cv2
 import mmcv
 from mmcv import Config
 from mmdet.datasets import build_dataset
-
-colormap=[
-        (54, 67, 244),
-        (99, 30, 233),
-        (176, 39, 156),
-        (183, 58, 103),
-        (181, 81, 63),
-        (243, 150, 33),
-        (212, 188, 0),
-        (136, 150, 0),
-        (80, 175, 76),
-        (74, 195, 139),
-        (57, 220, 205),
-        (59, 235, 255),
-        (0, 152, 255),
-        (34, 87, 255),
-        (72, 85, 121)]
-#随机生成颜色
 from my.get_colors import ncolors
-colormap = ncolors(5, 0)
+# colormap=[
+#         (54, 67, 244),
+#         (99, 30, 233),
+#         (176, 39, 156),
+#         (183, 58, 103),
+#         (181, 81, 63),
+#         (243, 150, 33),
+#         (212, 188, 0),
+#         (136, 150, 0),
+#         (80, 175, 76),
+#         (74, 195, 139),
+#         (57, 220, 205),
+#         (59, 235, 255),
+#         (0, 152, 255),
+#         (34, 87, 255),
+#         (72, 85, 121)]
+# #随机生成颜色
+# from my.get_colors import ncolors
+# colormap = ncolors(5, 0)
 
-def draw_res_on_raw_img(img_dir,img_out_dir,txt_dir,config_file,show_label,score_thd=0.3):
-    cfg = Config.fromfile(config_file)
-    data_test = cfg.data.test
-    dataset = build_dataset(data_test)
-    class_names = dataset.CLASSES
+def draw_res_on_raw_img(img_dir,img_out_dir,txt_dir,show_label,score_thd=0.3):
+    class_names = [os.path.splitext(x)[0] for x in os.listdir(txt_dir)]
 
+    colormap = ncolors(len(class_names), 0)
     img_list = os.listdir(img_dir)
 
     for i in range(len(img_list)):
@@ -79,8 +77,8 @@ def draw_res_on_raw_img(img_dir,img_out_dir,txt_dir,config_file,show_label,score
 
 
 if __name__ == '__main__':
-    img_dir = "/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/images"
-    img_out_dir = "/home/amax/ganlan/arashi/data/FAIR1M_dataset/test/infer_imgs"
-    txt_dir = "/home/amax/ganlan/arashi/s2anet2_my/s2anet_r50_fpn_1x_scale1_1.5_fair1m_5_classes/results_after_nms"
-    config_file = "/home/amax/ganlan/arashi/s2anet2_my/my/config/s2anet_r50_fpn_1x_fair1m_5classes.py"
-    draw_res_on_raw_img(img_dir, img_out_dir, txt_dir, config_file, True,0.5)
+    img_dir = "/home/jyc/arashi/data/HRSC2016_dataset/test/images"
+    img_out_dir = "/home/jyc/arashi/data/HRSC2016_dataset/test/infer_imgs_小类"
+    txt_dir = "/home/jyc/arashi/PycharmProjects/s2anet2_my/checkpoints/work_dirs/s2anet_r50_fpn_1x_dota_hrsc2016_categoryNew/merged_cls"
+    # config_file = "/home/jyc/arashi/PycharmProjects/s2anet2_my/my/config/s2anet_r50_fpn_1x_dota_hrsc2016_category.py"
+    draw_res_on_raw_img(img_dir, img_out_dir, txt_dir, True,0.5)

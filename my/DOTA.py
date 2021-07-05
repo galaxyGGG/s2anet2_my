@@ -117,18 +117,20 @@ class DOTA:
         return imgs
 
 if __name__ == '__main__':
-    examplesplit = DOTA("/home/jyc/arashi/data/HRSC2016_dataset_800/test_split")
+    examplesplit = DOTA("/home/jyc/arashi/data/HRSC2016/FullDataSet")
     # 按类名加载图片
     # imgids = examplesplit.getImgIds(catNms=['plane'])
     # img = examplesplit.loadImgs(imgids)
-
-    imgids = examplesplit.getImgIds()
+    imgids = examplesplit.getImgIds(catNms=['企业级航母'])
+    # imgids = examplesplit.getImgIds()
     for imgid in imgids:
-
-        anns = examplesplit.loadAnns(imgId=imgid)
-        plt.title(imgid)
-        examplesplit.showAnns(anns, imgid, 2)
-        plt.show()
+        try:
+            anns = examplesplit.loadAnns(imgId=imgid)
+            plt.title(imgid)
+            examplesplit.showAnns(anns, imgid, 2)
+            plt.show()
+        except:
+            pass
         # plt.figure()
         #
         # plt.show()

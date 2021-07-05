@@ -85,5 +85,5 @@ def get_classes(labelTxt_dir,save_dir = ".."):
 
 
 if __name__ == '__main__':
-    txt_dir = "/home/amax/ganlan/arashi/data/HRSC2016/FullDataSet/labelTxt"
+    txt_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/labelTxt"
     get_classes(txt_dir)

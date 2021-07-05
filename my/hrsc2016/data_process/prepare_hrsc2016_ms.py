@@ -53,7 +53,7 @@ if __name__ == '__main__':
                       '琵琶形军舰', '企业级航母', '提康德罗加级巡洋舰', '佩里级护卫舰', '尾部OX头部圆指挥舰', '奥斯汀级两栖船坞运输舰', '潜艇', '惠德贝岛级船坞登陆舰',
                       '尼米兹级航母', '军舰', '俄罗斯库兹涅佐夫号航母', '医疗船', '中途号航母', '蓝岭级指挥舰', '小鹰级航母',
                       '航母']
-    word_name = ['warship', 'ship', 'aircraft_carrier', 'submarine']
-    prepare_multi_scale_data('/home/amax/ganlan/arashi/data/HRSC2016_dataset', '/home/amax/ganlan/arashi/data/HRSC2016_dataset_1024',
-                             word_name,gap=100, subsize=800,scales=[1,0.5,1.5],
+    # word_name = ['warship', 'ship', 'aircraft_carrier', 'submarine']
+    prepare_multi_scale_data('/home/jyc/arashi/data/HRSC2016_dataset', '/home/jyc/arashi/data/HRSC2016_dataset_800',
+                             word_name,gap=100, subsize=800,scales=[1],
                              num_process=128)

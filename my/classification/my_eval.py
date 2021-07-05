@@ -38,11 +38,12 @@ def my_eval(dst_merge_path,gt_dir,imagesetfile,classes):
 
 if __name__ == '__main__':
     dst_merge_path = "/home/jyc/arashi/PycharmProjects/s2anet2_my/work_dirs/s2anet_r50_fpn_1x_dota_hrsc2016_category/merged_cls"
-    gt_dir="/home/jyc/arashi/data/HRSC2016_dataset/test/labelTxt"
-    imagesetfile  ="/home/jyc/arashi/data/HRSC2016_dataset/test/imgsetfile.txt"
+    gt_dir="/home/jyc/arashi/data/HRSC2016/FullDataSet/labelTxt"
+    imagesetfile  ="/home/jyc/arashi/data/HRSC2016/FullDataSet/imgsetfile.txt"
+    # !!! 注意这里给的classes测试集里不一定有，所以最好检查一下，确保再分数据集时保证每个数据集都有
     classes = ['ship', 'medic', 'burke', 'perry', 'talawa', 'submarine',
                       "圣安东尼奥级两栖船坞运输舰", "琵琶形军舰", "提康德罗加级巡洋舰", "尾部OX头部圆指挥舰",
                      "奥斯汀级两栖船坞运输舰", "惠德贝岛级船坞登陆舰",
-                      "企业级航母", "尼米兹级航母", "俄罗斯库兹涅佐夫号航母", "中途号航母"
+                      "企业级航母", "尼米兹级航母", "中途号航母"
                       ]
     my_eval(dst_merge_path, gt_dir, imagesetfile, classes)
