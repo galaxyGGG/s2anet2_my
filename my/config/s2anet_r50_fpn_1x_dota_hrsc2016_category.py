@@ -1,10 +1,10 @@
 # model settings
 model = dict(
     type='S2ANetDetector',
-    pretrained='torchvision://resnet101',
-    # pretrained = "///data/checkpoints/resnet50-19c8e357.pth",
+    # pretrained='torchvision://resnet101',
+    pretrained = "/home/jyc/Desktop/sge_resnet101.pth.tar",
     backbone=dict(
-        type='ResNet',
+        type='ResNetSGE',
         depth=101,
         num_stages=4,
         out_indices=(0, 1, 2, 3),
@@ -105,7 +105,11 @@ train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
     # TODO 修改
-    dict(type='Albu', transforms=albu_train_transforms),
+    dict(type='Albu', transforms=albu_train_transforms,
+                 bbox_params=None,
+                 keymap=None,
+                 update_pad_shape=False,
+                 skip_img_without_anno=False),
     dict(type='RandomRotate'),
     dict(type='RotatedResize', img_scale=(1024, 1024), keep_ratio=True),
     dict(type='RotatedRandomFlip', flip_ratio=0.5),

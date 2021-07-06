@@ -1,5 +1,5 @@
 import pickle
-path = '/home/jyc/arashi/PycharmProjects/s2anet2_my/checkpoints/work_dirs/s2anet_r50_fpn_1x_dota_hrsc2016_categoryNew/res.pkl'  # path='/root/……/aus_openface.pkl'   pkl文件所在路径
+path = '/home/jyc/arashi/data/HRSC2016_dataset_800/trainval_split/trainval_s2anet.pkl'  # path='/root/……/aus_openface.pkl'   pkl文件所在路径
 
 f = open(path, 'rb')
 data = pickle.load(f)
