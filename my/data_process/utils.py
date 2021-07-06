@@ -5,6 +5,8 @@ import os
 
 import cv2
 import numpy as np
+from tqdm import tqdm
+
 
 def check_points(points, image_id, w, h):
     """
@@ -82,8 +84,28 @@ def get_classes(labelTxt_dir,save_dir = ".."):
                 f2.write("%s: %s\n" % (key, val))
     print("num_classes:" + str(len(dict_cls.keys())))
 
+def cal_mean_std(dir):
+    img_filenames = os.listdir(dir)
+    m_list, s_list = [], []
+    for img_filename in tqdm(img_filenames):
+        img = cv2.imread(os.path.join(dir,img_filename))
+        # img = img / 255.0
+        m, s = cv2.meanStdDev(img)
+        m_list.append(m.reshape((3,)))
+        s_list.append(s.reshape((3,)))
+    m_array = np.array(m_list)
+    s_array = np.array(s_list)
+    m = m_array.mean(axis=0, keepdims=True)
+    s = s_array.mean(axis=0, keepdims=True)
+    print(m[0][::-1])
+    print(s[0][::-1])
+
+
 
 
 if __name__ == '__main__':
-    txt_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/labelTxt"
-    get_classes(txt_dir)
+    # txt_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/labelTxt"
+    # get_classes(txt_dir)
+
+    # 计算方差
+    cal_mean_std("/home/amax/ganlan/arashi/data/HRSC2016_dataset_800/trainval_split/images")
