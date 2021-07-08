@@ -102,13 +102,13 @@ def split_dataset_imagenet(data_dir, train_ratio, val_ratio, out_dir):
 
 
 if __name__ == '__main__':
-    # *** dota 数据集划分 ***
-    data_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/AllImages"
-    out_dir = "/home/jyc/arashi/data/HRSC2016_dataset"
-    split_dataset_dota(data_dir, 0.8, 0, out_dir)
+    # # *** dota 数据集划分 ***
+    # data_dir = "/home/jyc/arashi/data/HRSC2016/FullDataSet/AllImages"
+    # out_dir = "/home/jyc/arashi/data/HRSC2016_dataset"
+    # split_dataset_dota(data_dir, 0.8, 0, out_dir)
 
     # *** image_net数据集划分 ***
-    # data_dir = "/home/jyc/arashi/data/HRSC2016_cls/warships/images"
-    # out_dir = "/home/jyc/arashi/data/HRSC2016_cls/warships"
-    # split_dataset_imagenet(data_dir, 0.8, 0, out_dir)
+    data_dir = "/home/jyc/arashi/data/HRSC2016_cls/all/images"
+    out_dir = "/home/jyc/arashi/data/HRSC2016_cls/all"
+    split_dataset_imagenet(data_dir, 0.9, 0, out_dir)
 

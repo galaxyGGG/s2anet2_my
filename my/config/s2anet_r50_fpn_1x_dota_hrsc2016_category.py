@@ -162,9 +162,9 @@ optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
 lr_config = dict(
     policy='step',
-    warmup='linear',
-    warmup_iters=500,
-    warmup_ratio=1.0 / 3,
+    warmup='linear',    # 初始的学习率增加的策略，linear为线性增加
+    warmup_iters=500,   # 在初始的500次迭代中学习率逐渐增加
+    warmup_ratio=1.0 / 3, # 起始的学习率
     step=[10])
 checkpoint_config = dict(interval=1)
 log_config = dict(

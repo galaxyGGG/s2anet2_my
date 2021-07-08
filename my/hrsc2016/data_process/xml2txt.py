@@ -113,21 +113,21 @@ if __name__ == '__main__':
         #     classes_dict[key] = "warship"
         # elif val in ["企业级航母", "尼米兹级航母", "俄罗斯库兹涅佐夫号航母", "中途号航母", "小鹰级航母", "航母", "福特级航空母舰"]:
         #     classes_dict[key] = "aircraft_carrier"
-        elif val in ["潜艇"]:
-            classes_dict[key] = "submarine"
-        elif val in ["阿利伯克级驱逐舰"]:
-            classes_dict[key] = "burke"
-        elif val in ["佩里级护卫舰"]:
-            classes_dict[key] = "perry"
-        elif val in ["医疗船"]:
-            classes_dict[key] = "medic"
-        elif val in ["塔拉瓦级通用两栖攻击舰"]:
-            classes_dict[key] = "talawa"
-    wanted_classes = ['ship', 'warship', 'aircraft_carrier', 'medic', 'burke', 'perry', 'talawa', 'submarine',
-                      "圣安东尼奥级两栖船坞运输舰", "琵琶形军舰", "提康德罗加级巡洋舰", "尾部OX头部圆指挥舰",
-                     "奥斯汀级两栖船坞运输舰", "惠德贝岛级船坞登陆舰",
-                      "企业级航母", "尼米兹级航母", "俄罗斯库兹涅佐夫号航母", "中途号航母"
-                      ]
+        # elif val in ["潜艇"]:
+        #     classes_dict[key] = "submarine"
+        # elif val in ["阿利伯克级驱逐舰"]:
+        #     classes_dict[key] = "burke"
+        # elif val in ["佩里级护卫舰"]:
+        #     classes_dict[key] = "perry"
+        # elif val in ["医疗船"]:
+        #     classes_dict[key] = "medic"
+        # elif val in ["塔拉瓦级通用两栖攻击舰"]:
+        #     classes_dict[key] = "talawa"
+    # wanted_classes = ['ship', 'warship', 'aircraft_carrier', 'medic', 'burke', 'perry', 'talawa', 'submarine',
+    #                   "圣安东尼奥级两栖船坞运输舰", "琵琶形军舰", "提康德罗加级巡洋舰", "尾部OX头部圆指挥舰",
+    #                  "奥斯汀级两栖船坞运输舰", "惠德贝岛级船坞登陆舰",
+    #                   "企业级航母", "尼米兹级航母", "俄罗斯库兹涅佐夫号航母", "中途号航母"
+    #                   ]
 
 
     txt_dir = ""
@@ -141,7 +141,7 @@ if __name__ == '__main__':
         if not os.path.splitext(file)[-1]==".xml":
             continue
         img_id = os.path.splitext(file)[:-1]
-        convert_annotation(img_id,xml_dir,txt_dir,classes_dict, wanted_classes) #如果不需要筛选类别，则删除wanted_classes
+        convert_annotation(img_id,xml_dir,txt_dir,classes_dict) #如果不需要筛选类别，则删除wanted_classes
 
     print(dict_cls)
     print(dict_cls.keys())
